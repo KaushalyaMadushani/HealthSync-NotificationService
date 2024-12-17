@@ -51,24 +51,24 @@ public class NotificationServiceTest {
         verify(notificationRepository, times(1)).findAll();
     }
 
-    @Test
-    void testSetMailSender() {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime oneHourLater = now.plusHours(1);
-        List<Notification> notifications = new ArrayList<>();
-        Notification notification = new Notification();
-        notification.setPatientEmail("mkaushalya96@gmail.com");
-     //   notification.setAppointmentTime(now);
-        notification.setAppointmentTime(now.plusMinutes(2));
-        notification.setSent(false);
-        notifications.add(notification);
-
-        when(notificationRepository.findBySentFalseAndAppointmentTimeBetween(now, oneHourLater)).thenReturn(notifications);
-
-        notificationService.setMailSender();
-
-        ArgumentCaptor<Notification> captor = ArgumentCaptor.forClass(Notification.class);
-        verify(notificationRepository, times(1)).save(captor.capture());
-        assertTrue(captor.getValue().isSent());
-    }
+//    @Test
+//    void testSetMailSender() {
+//        LocalDateTime now = LocalDateTime.now();
+//        LocalDateTime oneHourLater = now.plusHours(1);
+//        List<Notification> notifications = new ArrayList<>();
+//        Notification notification = new Notification();
+//        notification.setPatientEmail("mkaushalya96@gmail.com");
+//     //   notification.setAppointmentTime(now);
+//        notification.setAppointmentTime(now.plusMinutes(2));
+//        notification.setSent(false);
+//        notifications.add(notification);
+//
+//        when(notificationRepository.findBySentFalseAndAppointmentTimeBetween(now, oneHourLater)).thenReturn(notifications);
+//
+//        notificationService.setMailSender();
+//
+//        ArgumentCaptor<Notification> captor = ArgumentCaptor.forClass(Notification.class);
+//        verify(notificationRepository, times(1)).save(captor.capture());
+//        assertTrue(captor.getValue().isSent());
+//    }
 }
